@@ -1,0 +1,26 @@
+# Matikan browsing indeks file
+Options -Indexes
+
+# Lindungi file .htaccess
+<Files .htaccess>
+  Order Allow,Deny
+  Deny from all
+</Files>
+
+# Lindungi direktori models
+<DirectoryMatch "^models/">
+  Order Allow,Deny
+  Deny from all
+</DirectoryMatch>
+
+# Lindungi direktori routes
+<DirectoryMatch "^models/">
+  Order Allow,Deny
+  Deny from all
+</DirectoryMatch>
+
+# Lindungi file sensitif secara langsung
+<FilesMatch "(db\.js|database\.sql)$">
+  Order Allow,Deny
+  Deny from all
+</FilesMatch>
