@@ -7,10 +7,11 @@ const categoryRoutes = require('./routes/categoryRoutes');
 const orderRoutes = require('./routes/orderRoutes');
 
 //routes
+
 router.use('/products', productRoutes);
 router.use('/users', userRoutes);
-router.use('/api/categories', categoryRoutes);
-router.use('/api/orders', orderRoutes);
+router.use('/categories', categoryRoutes);
+router.use('/orders', orderRoutes);
 
 
 module.exports = router;

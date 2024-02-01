@@ -1,0 +1,261 @@
+{
+    "client": "Thunder Client",
+    "collectionName": "express-shop-api",
+    "dateExported": "2024-02-01T09:23:28.076Z",
+    "version": "1.1",
+    "folders": [
+        {
+            "_id": "ec9fe371-3443-4ad9-95f3-2f8ab1dda9a3",
+            "name": "auth",
+            "containerId": "",
+            "created": "2024-02-01T08:40:11.718Z",
+            "sortNum": 10000
+        },
+        {
+            "_id": "3ccdf0d0-c50c-48af-8bc2-43785e5342ff",
+            "name": "kategori",
+            "containerId": "",
+            "created": "2024-02-01T08:40:18.890Z",
+            "sortNum": 20000
+        },
+        {
+            "_id": "5633f1db-732b-48fd-ab7e-d7d62b9207ab",
+            "name": "produk",
+            "containerId": "",
+            "created": "2024-02-01T08:40:25.912Z",
+            "sortNum": 30000
+        },
+        {
+            "_id": "2abada64-f99b-4d03-b749-db1556cc3fda",
+            "name": "order",
+            "containerId": "",
+            "created": "2024-02-01T08:40:31.828Z",
+            "sortNum": 40000
+        }
+    ],
+    "requests": [
+        {
+            "_id": "37aa3fb3-cd9b-4465-afb6-09fee173a195",
+            "colId": "b4216177-d5a7-4e9b-8a5f-d30b5669499c",
+            "containerId": "ec9fe371-3443-4ad9-95f3-2f8ab1dda9a3",
+            "name": "register",
+            "url": "http://localhost:5000/api/users/register",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-01T08:40:40.072Z",
+            "modified": "2024-02-01T09:08:05.280Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"123456\",\n  \"level\": \"admin\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "7bab5f1b-6601-42e8-a536-629d3de47995",
+            "colId": "b4216177-d5a7-4e9b-8a5f-d30b5669499c",
+            "containerId": "3ccdf0d0-c50c-48af-8bc2-43785e5342ff",
+            "name": "add",
+            "url": "http://localhost:5000/api/categories",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-01T08:48:36.046Z",
+            "modified": "2024-02-01T09:23:19.088Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nama_kategori\": \"Nama Kategori\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "f9c0e387-2543-4212-bf0d-5c7e97c0c0bc",
+            "colId": "b4216177-d5a7-4e9b-8a5f-d30b5669499c",
+            "containerId": "2abada64-f99b-4d03-b749-db1556cc3fda",
+            "name": "create",
+            "url": "http://localhost:5000/api/orders/create",
+            "method": "POST",
+            "sortNum": 10000,
+            "created": "2024-02-01T08:52:59.761Z",
+            "modified": "2024-02-01T09:22:25.768Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"orderDetails\": [\n    {\"productId\": 1, \"quantity\": 2},\n    {\"productId\": 2, \"quantity\": 1}\n  ]\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "dc5d02b0-966c-4bb1-8f3a-9b6ef0d2b456",
+            "colId": "b4216177-d5a7-4e9b-8a5f-d30b5669499c",
+            "containerId": "ec9fe371-3443-4ad9-95f3-2f8ab1dda9a3",
+            "name": "update",
+            "url": "http://localhost:5000/api/users/profile",
+            "method": "PUT",
+            "sortNum": 15000,
+            "created": "2024-02-01T08:46:57.675Z",
+            "modified": "2024-02-01T08:48:04.275Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"nama_pengguna\",\n  \"password\": \"kata_sandi\",\n  \"level\": \"contoh@domain.com\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "650e8a84-aecf-46f6-8b19-53f092ea1f39",
+            "colId": "b4216177-d5a7-4e9b-8a5f-d30b5669499c",
+            "containerId": "5633f1db-732b-48fd-ab7e-d7d62b9207ab",
+            "name": "get",
+            "url": "http://localhost:5000/api/products",
+            "method": "GET",
+            "sortNum": 15000,
+            "created": "2024-02-01T08:51:15.543Z",
+            "modified": "2024-02-01T09:21:54.382Z",
+            "headers": [],
+            "params": [],
+            "tests": []
+        },
+        {
+            "_id": "38f98283-1997-4b6b-8e8d-3dd94cffe14e",
+            "colId": "b4216177-d5a7-4e9b-8a5f-d30b5669499c",
+            "containerId": "5633f1db-732b-48fd-ab7e-d7d62b9207ab",
+            "name": "add",
+            "url": "http://localhost:5000/api/products",
+            "method": "POST",
+            "sortNum": 17500,
+            "created": "2024-02-01T08:49:38.002Z",
+            "modified": "2024-02-01T09:22:02.087Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nama_produk\": \"Nama Produk\",\n  \"deskripsi\": \"Deskripsi Produk\",\n  \"satuan\": \"Satuan Produk\",\n  \"harga\": 100.00,\n  \"kategori_id\": 1\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "0cadfc1e-349c-4414-8a55-03ba84b0c78f",
+            "colId": "b4216177-d5a7-4e9b-8a5f-d30b5669499c",
+            "containerId": "ec9fe371-3443-4ad9-95f3-2f8ab1dda9a3",
+            "name": "login",
+            "url": "http://localhost:5000/api/users/login",
+            "method": "POST",
+            "sortNum": 20000,
+            "created": "2024-02-01T08:44:59.575Z",
+            "modified": "2024-02-01T09:10:53.795Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"admin\",\n  \"password\": \"123456\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "035029aa-7223-419d-b65d-5f23340c57fd",
+            "colId": "b4216177-d5a7-4e9b-8a5f-d30b5669499c",
+            "containerId": "5633f1db-732b-48fd-ab7e-d7d62b9207ab",
+            "name": "update",
+            "url": "http://localhost:5000/api/products/:2",
+            "method": "PUT",
+            "sortNum": 20000,
+            "created": "2024-02-01T08:50:42.495Z",
+            "modified": "2024-02-01T09:22:10.821Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nama_produk\": \"Nama Produk\",\n  \"deskripsi\": \"Deskripsi Produk\",\n  \"satuan\": \"Satuan Produk\",\n  \"harga\": 100.00,\n  \"kategori_id\": 1\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "25b73127-425f-44ec-a55e-eb3c739b9071",
+            "colId": "b4216177-d5a7-4e9b-8a5f-d30b5669499c",
+            "containerId": "2abada64-f99b-4d03-b749-db1556cc3fda",
+            "name": "list order",
+            "url": "http://localhost:5000/api/orders/user",
+            "method": "GET",
+            "sortNum": 20000,
+            "created": "2024-02-01T08:53:50.984Z",
+            "modified": "2024-02-01T09:22:57.693Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"orderDetails\": [\n    {\"productId\": 1, \"quantity\": 2},\n    {\"productId\": 2, \"quantity\": 1}\n  ]\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "769332d2-244f-483a-95d9-32d883664147",
+            "colId": "b4216177-d5a7-4e9b-8a5f-d30b5669499c",
+            "containerId": "ec9fe371-3443-4ad9-95f3-2f8ab1dda9a3",
+            "name": "profil",
+            "url": "http://localhost:5000/api/users/profile/1",
+            "method": "GET",
+            "sortNum": 30000,
+            "created": "2024-02-01T08:45:33.387Z",
+            "modified": "2024-02-01T08:47:54.670Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"username\": \"nama_pengguna\",\n  \"password\": \"kata_sandi\"\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "23657b58-c579-438e-b5f3-9251fa27638e",
+            "colId": "b4216177-d5a7-4e9b-8a5f-d30b5669499c",
+            "containerId": "5633f1db-732b-48fd-ab7e-d7d62b9207ab",
+            "name": "delete",
+            "url": "http://localhost:5000/api/products/:2",
+            "method": "DELETE",
+            "sortNum": 30000,
+            "created": "2024-02-01T08:51:34.555Z",
+            "modified": "2024-02-01T09:22:17.128Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"nama_produk\": \"Nama Produk\",\n  \"deskripsi\": \"Deskripsi Produk\",\n  \"satuan\": \"Satuan Produk\",\n  \"harga\": 100.00,\n  \"kategori_id\": 1\n}\n",
+                "form": []
+            },
+            "tests": []
+        },
+        {
+            "_id": "d1b168c5-9c87-4014-a7b1-5d80e3b12b3b",
+            "colId": "b4216177-d5a7-4e9b-8a5f-d30b5669499c",
+            "containerId": "2abada64-f99b-4d03-b749-db1556cc3fda",
+            "name": "checkout",
+            "url": "http://localhost:5000/api/orders/checkout",
+            "method": "POST",
+            "sortNum": 30000,
+            "created": "2024-02-01T08:54:55.523Z",
+            "modified": "2024-02-01T09:23:05.185Z",
+            "headers": [],
+            "params": [],
+            "body": {
+                "type": "json",
+                "raw": "{\n  \"orderId\": 123\n}\n",
+                "form": []
+            },
+            "tests": []
+        }
+    ]
+}

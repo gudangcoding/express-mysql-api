@@ -1,5 +1,5 @@
 # Matikan browsing indeks file
-Options -Indexes
+# Options -Indexes
 
 # Lindungi file .htaccess
 <Files .htaccess>

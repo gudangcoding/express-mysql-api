@@ -8,8 +8,10 @@ const { authenticateToken } = require('../middleware');
 
 // Create a new user
 router.post('/register', async (req, res) => {
+  
+  // res.json(req.body);
   try {
-    const { username, password } = req.body;
+    const { username, password, level } = req.body;
 
     // Check if the username is already taken
     const existingUser = await User.findOne({ where: { username } });
