@@ -1,7 +1,7 @@
 // routes/categoryRoutes.js
 const express = require('express');
 const router = express.Router();
-const { Category } = require('../models');
+const { Category } = require('../models/CategoryModel');
 const { authenticateToken } = require('../middleware');
 
 // Create a new category

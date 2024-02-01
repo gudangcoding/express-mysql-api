@@ -1,38 +1,33 @@
-// models/Product.js
+// models/ProductModel.js
 const { DataTypes } = require('sequelize');
-const db = require('../db');
 
-const Product = (db) => {
-  const model = db.define('Product', {
+module.exports = (sequelize) => {
+  const Product = sequelize.define('Product', {
+    // definisi kolom
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
     },
     nama_produk: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
     },
     deskripsi: {
       type: DataTypes.TEXT,
-      allowNull: true
     },
     satuan: {
       type: DataTypes.STRING,
-      allowNull: true
     },
     harga: {
-      type: DataTypes.FLOAT,
-      allowNull: false
+      type: DataTypes.DECIMAL(10, 2),
     },
     kategori_id: {
       type: DataTypes.INTEGER,
-      allowNull: true
-    }
+    },
   });
 
-  return model;
-};
+  // definisi relasi atau metode lain jika diperlukan
 
-module.exports = Product;
+  return Product;
+};

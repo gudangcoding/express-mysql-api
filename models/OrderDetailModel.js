@@ -1,34 +1,28 @@
-// models/OrderDetailModel.js
 const { DataTypes } = require('sequelize');
-const db = require('../db');
 
-const OrderDetail = (db) => {
-  const model = db.define('OrderDetail', {
+module.exports = (sequelize) => {
+  const OrderDetail = sequelize.define('OrderDetail', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
     },
-    order_id: {
+    orderId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
-    product_id: {
+    productId: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
     quantity: {
       type: DataTypes.INTEGER,
-      allowNull: false
+      allowNull: false,
     },
-    unit_price: {
-      type: DataTypes.FLOAT,
-      allowNull: false
-    }
+    // tambahkan kolom lain jika diperlukan
   });
 
-  return model;
-};
+  // Definisikan relasi atau metode lain jika diperlukan
 
-module.exports = OrderDetail;
+  return OrderDetail;
+};

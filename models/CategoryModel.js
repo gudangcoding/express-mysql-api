@@ -1,22 +1,20 @@
-// models/CategoryModel.js
 const { DataTypes } = require('sequelize');
-const db = require('../db');
 
-const Category = (db) => {
-  const model = db.define('Category', {
+module.exports = (sequelize) => {
+  const Category = sequelize.define('Category', {
     id: {
       type: DataTypes.INTEGER,
       primaryKey: true,
       autoIncrement: true,
-      allowNull: false
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false
-    }
+      allowNull: false,
+    },
+    // tambahkan kolom lain jika diperlukan
   });
 
-  return model;
-};
+  // Definisikan relasi atau metode lain jika diperlukan
 
-module.exports = Category;
+  return Category;
+};

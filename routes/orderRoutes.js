@@ -1,11 +1,13 @@
 // routes/orderRoutes.js
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { Order, OrderDetail, Product } = require('../models');
-const { authenticateToken } = require('../middleware');
+const { Order } = require("../models/OrderModel");
+const { OrderDetail } = require("../models/OrderDetailModel");
+const { Product } = require("../models/ProductModel");
+const { authenticateToken } = require("../middleware");
 
 // Create a new order
-router.post('/', authenticateToken, async (req, res) => {
+router.post("/", authenticateToken, async (req, res) => {
   try {
     const { customer_name, order_date, order_details } = req.body;
 
@@ -19,7 +21,9 @@ router.post('/', authenticateToken, async (req, res) => {
         const product = await Product.findByPk(product_id);
 
         if (!product) {
-          return res.status(404).json({ message: `Product with ID ${product_id} not found` });
+          return res
+            .status(404)
+            .json({ message: `Product with ID ${product_id} not found` });
         }
 
         await OrderDetail.create({
@@ -38,7 +42,7 @@ router.post('/', authenticateToken, async (req, res) => {
 });
 
 // Get all orders
-router.get('/', authenticateToken, async (req, res) => {
+router.get("/", authenticateToken, async (req, res) => {
   try {
     const orders = await Order.findAll({
       include: [{ model: OrderDetail, include: [Product] }],
@@ -51,7 +55,7 @@ router.get('/', authenticateToken, async (req, res) => {
 });
 
 // Get a specific order by ID
-router.get('/:id', authenticateToken, async (req, res) => {
+router.get("/:id", authenticateToken, async (req, res) => {
   try {
     const orderId = req.params.id;
     const order = await Order.findByPk(orderId, {
@@ -59,7 +63,7 @@ router.get('/:id', authenticateToken, async (req, res) => {
     });
 
     if (!order) {
-      return res.status(404).json({ message: 'Order not found' });
+      return res.status(404).json({ message: "Order not found" });
     }
 
     res.json(order);
@@ -69,7 +73,7 @@ router.get('/:id', authenticateToken, async (req, res) => {
 });
 
 // Update an order by ID
-router.put('/:id', authenticateToken, async (req, res) => {
+router.put("/:id", authenticateToken, async (req, res) => {
   try {
     const orderId = req.params.id;
     const { customer_name, order_date, order_details } = req.body;
@@ -77,7 +81,7 @@ router.put('/:id', authenticateToken, async (req, res) => {
     const order = await Order.findByPk(orderId);
 
     if (!order) {
-      return res.status(404).json({ message: 'Order not found' });
+      return res.status(404).json({ message: "Order not found" });
     }
 
     // Update order details
@@ -90,7 +94,9 @@ router.put('/:id', authenticateToken, async (req, res) => {
         const product = await Product.findByPk(product_id);
 
         if (!product) {
-          return res.status(404).json({ message: `Product with ID ${product_id} not found` });
+          return res
+            .status(404)
+            .json({ message: `Product with ID ${product_id} not found` });
         }
 
         await OrderDetail.create({
@@ -112,14 +118,14 @@ router.put('/:id', authenticateToken, async (req, res) => {
 });
 
 // Delete an order by ID
-router.delete('/:id', authenticateToken, async (req, res) => {
+router.delete("/:id", authenticateToken, async (req, res) => {
   try {
     const orderId = req.params.id;
 
     const order = await Order.findByPk(orderId);
 
     if (!order) {
-      return res.status(404).json({ message: 'Order not found' });
+      return res.status(404).json({ message: "Order not found" });
     }
 
     // Delete associated order details
@@ -127,75 +133,75 @@ router.delete('/:id', authenticateToken, async (req, res) => {
 
     await order.destroy();
 
-    res.json({ message: 'Order deleted successfully' });
+    res.json({ message: "Order deleted successfully" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }
 });
 
 // Rute untuk membuat pesanan baru
-router.post('/create', authenticateToken, async (req, res) => {
-    try {
-      const { orderDetails } = req.body;
-      const userId = req.user.userId;
-  
-      // Buat pesanan baru
-      const order = await Order.create({ userId });
-  
-      // Tambahkan detail pesanan
-      for (const detail of orderDetails) {
-        await OrderDetail.create({
-          orderId: order.id,
-          productId: detail.productId,
-          quantity: detail.quantity,
-        });
-      }
-  
-      res.json(order);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
-    }
-  });
-  
-  // Rute untuk mendapatkan pesanan berdasarkan pengguna
-  router.get('/user', authenticateToken, async (req, res) => {
-    try {
-      const userId = req.user.userId;
-  
-      // Ambil pesanan berdasarkan pengguna
-      const orders = await Order.findAll({
-        where: { userId },
-        include: [{ model: OrderDetail, include: [Product] }],
+router.post("/create", authenticateToken, async (req, res) => {
+  try {
+    const { orderDetails } = req.body;
+    const userId = req.user.userId;
+
+    // Buat pesanan baru
+    const order = await Order.create({ userId });
+
+    // Tambahkan detail pesanan
+    for (const detail of orderDetails) {
+      await OrderDetail.create({
+        orderId: order.id,
+        productId: detail.productId,
+        quantity: detail.quantity,
       });
-  
-      res.json(orders);
-    } catch (error) {
-      res.status(500).json({ error: error.message });
     }
-  });
-  
-  // Rute untuk checkout pesanan
-  router.post('/checkout', authenticateToken, async (req, res) => {
-    try {
-      const userId = req.user.userId;
-  
-      // Ambil pesanan yang belum di-checkout oleh pengguna
-      const orders = await Order.findAll({
-        where: { userId, checkedOut: false },
-        include: [{ model: OrderDetail, include: [Product] }],
-      });
-  
-      // Proses checkout untuk setiap pesanan
-      for (const order of orders) {
-        // Lakukan operasi checkout sesuai kebutuhan (contoh: mengupdate status pesanan)
-        order.checkedOut = true;
-        await order.save();
-      }
-  
-      res.json({ message: 'Checkout successful' });
-    } catch (error) {
-      res.status(500).json({ error: error.message });
+
+    res.json(order);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Rute untuk mendapatkan pesanan berdasarkan pengguna
+router.get("/user", authenticateToken, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+
+    // Ambil pesanan berdasarkan pengguna
+    const orders = await Order.findAll({
+      where: { userId },
+      include: [{ model: OrderDetail, include: [Product] }],
+    });
+
+    res.json(orders);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
+// Rute untuk checkout pesanan
+router.post("/checkout", authenticateToken, async (req, res) => {
+  try {
+    const userId = req.user.userId;
+
+    // Ambil pesanan yang belum di-checkout oleh pengguna
+    const orders = await Order.findAll({
+      where: { userId, checkedOut: false },
+      include: [{ model: OrderDetail, include: [Product] }],
+    });
+
+    // Proses checkout untuk setiap pesanan
+    for (const order of orders) {
+      // Lakukan operasi checkout sesuai kebutuhan (contoh: mengupdate status pesanan)
+      order.checkedOut = true;
+      await order.save();
     }
-  });
+
+    res.json({ message: "Checkout successful" });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
 
 module.exports = router;
